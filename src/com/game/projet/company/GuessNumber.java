@@ -4,74 +4,65 @@ import java.util.Scanner;
 
 public class GuessNumber {
 
-        public static void main(String[] args) {
+        public static void jeuxDevinette() {
 
-            String choixUtilisateur;
+            String Rejouer="";
 
-            boolean test =false;
-            Scanner Scan;
+            Scanner Scan= new Scanner(System.in);
 
-            System.out.println("Selectionner un choix parmi ceux ci-dessous :..."+"\n"+"\t\t\t"+"Enter E : 10 essaies pour deviner le nombre."+"\n"+"\t\t\t"+"Enter J : Jouer jusqu'à troiver le nombre");
+            do{
 
-            Scan = new Scanner(System.in);
-            choixUtilisateur=Scan.nextLine();// je récupère le choix de l'utilisateur
+                String choixUtilisateur;
+                boolean test = false;
+                String chaine = "";
+                System.out.print("\t\t\t" + "Enter E : 10 essaies pour deviner le nombre."+ "\n"
+                                + "\t\t\t" + "Enter J : Jouer jusqu'à trouver le nombre" +"\n"
+                                +"Selectionner un choix parmi ceux ci-dessus :..." );
 
 
-            int nombreAleatoire = 1+ (int)(Math.random() * ((99) + 1));// generer un nombre aleatoir entre 1 et 100
-            //   System.out.println(nombreAleatoire);
+                choixUtilisateur = Scan.nextLine();// je récupère le choix de l'utilisateur
 
+                int nombreAleatoire = 1 + (int) (Math.random() * ((99) + 1));// generer un nombre aleatoir entre 1 et 100
+                    //   System.out.println(nombreAleatoire);
+                int reponseUtilisateur;
 
-            int reponseUtilisateur;
+                Scan = new Scanner(System.in);
 
-            System.out.println("Entrer un nombre entre 1 et 100: ");
-            Scan = new Scanner(System.in);
+                int nombreDepartie = 0;
 
-            if(choixUtilisateur.equals("F") ) {
-                    int nombreDepartie=0;
                 do {
+                    System.out.println(chaine + "Entrer un nombre entre 1 et 100: ");
                     reponseUtilisateur = Scan.nextInt();
 
                     if (nombreAleatoire == reponseUtilisateur) {
-                        System.out.println("Bingo, bonne réponse ");
-                        test = true;
-
-
-                    } else if (nombreAleatoire < reponseUtilisateur) {
-                        System.out.println("C'est moins" + "\n" + "Entrer un nombre compris entre 1 et 100");
-                        reponseUtilisateur = Scan.nextInt();
-                    } else {
-                        System.out.println("C'est plus" + "\n" + "Entrer une nombre compris entre 1 et 100");
-                        reponseUtilisateur = Scan.nextInt();
-                    }
-
-                    nombreDepartie++;
-                } while (!((test=false)&&(nombreDepartie<=10)));
-
-
-            } else
-
-                do {
-                    reponseUtilisateur = Scan.nextInt();
-
-                    if (nombreAleatoire == reponseUtilisateur) {
-                        System.out.println("Bingo, bonne réponse ");
-                        test = true;
-
+                            System.out.println("Bingo, bonne réponse 🥳" );
+                            test = true;
 
                     } else if (nombreAleatoire < reponseUtilisateur) {
-                        System.out.println("C'est moins" + "\n" + "Entrer un nombre compris entre 1 et 100");
-                        reponseUtilisateur = Scan.nextInt();
+                            chaine = "C'est moins. ";
+
                     } else {
-                        System.out.println("C'est plus" + "\n" + "Entrer une nombre compris entre 1 et 100");
-                        reponseUtilisateur = Scan.nextInt();
+                            chaine = "C'est plus. ";
+
                     }
+                    if (choixUtilisateur.equals("E")) {
+                            nombreDepartie++;
+                    }
+                } while ((!test ) && (nombreDepartie <= 10));
 
 
-                } while (!(test));
+                if(test==false){
+
+                    System.out.println("Vous avez perdu😜");
+                }
+
+                System.out.print("Voulez refaire une partie   ");
+
+                 Scan= new Scanner(System.in);
+
+                Rejouer=Scan.nextLine();
 
 
-
-
-
-
-        }}
+            }while(Rejouer.equals("oui"));
+        }
+}
